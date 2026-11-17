@@ -1,0 +1,529 @@
+/* =========================================================
+   Game Dex – Estilos partilhados (Aluno 1: Design)
+   Todos os colegas devem usar estas variáveis e classes
+   para manter o design consistente em todas as páginas.
+   ========================================================= */
+
+:root {
+  /* Cores */
+  --bg: #0d0b14;
+  --bg-elevated: #161224;
+  --bg-card: #1d1830;
+  --border: #2c2545;
+  --text: #ece9f7;
+  --text-muted: #a49fbd;
+  --accent: #8b5cf6;       /* roxo principal */
+  --accent-strong: #a78bfa;
+  --accent-2: #38bdf8;     /* azul de apoio */
+  --success: #34d399;
+  --danger: #f87171;
+
+  /* Tipografia */
+  --font-title: "Orbitron", "Segoe UI", sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+
+  /* Espaçamento e forma */
+  --radius: 14px;
+  --radius-sm: 8px;
+  --gap: 1.5rem;
+  --container: 1150px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --glow: 0 0 24px rgba(139, 92, 246, 0.45);
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(139, 92, 246, 0.18), transparent 60%),
+    radial-gradient(700px 400px at -10% 30%, rgba(56, 189, 248, 0.08), transparent 60%),
+    var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main { flex: 1; }
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--accent-strong); text-decoration: none; }
+a:hover { color: var(--text); }
+
+h1, h2, h3 {
+  font-family: var(--font-title);
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+  letter-spacing: 0.02em;
+}
+
+.container {
+  width: min(100% - 2rem, var(--container));
+  margin-inline: auto;
+}
+
+.section { padding: 4rem 0; }
+
+.section-title {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  margin-bottom: 0.25rem;
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  margin: 0 0 2rem;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---------- Botões ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  font: 600 1rem var(--font-body);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), #6d3df0);
+  color: #fff;
+  box-shadow: var(--glow);
+}
+.btn-primary:hover { color: #fff; box-shadow: 0 0 34px rgba(139, 92, 246, 0.7); }
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--text); }
+
+/* ---------- Cabeçalho e navegação ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13, 11, 20, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 68px;
+}
+
+.logo {
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: var(--text);
+  letter-spacing: 0.05em;
+}
+.logo span { color: var(--accent-strong); }
+
+.nav-list {
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list a {
+  display: block;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-list a:hover,
+.nav-list a[aria-current="page"] {
+  color: var(--text);
+  background: rgba(139, 92, 246, 0.18);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.7rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+/* ---------- Hero (página inicial) ---------- */
+.hero {
+  padding: 5rem 0 4rem;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--accent-strong);
+  font-size: 0.85rem;
+  background: rgba(139, 92, 246, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 7vw, 4.2rem);
+  margin-bottom: 1rem;
+}
+.hero h1 .gradient {
+  background: linear-gradient(90deg, var(--accent-strong), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  max-width: 620px;
+  margin: 0 auto 2rem;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 3.5rem;
+  flex-wrap: wrap;
+}
+.stat strong {
+  display: block;
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  color: var(--accent-strong);
+}
+.stat span { color: var(--text-muted); font-size: 0.9rem; }
+
+/* ---------- Grelha e cartões (partilhado com o catálogo) ---------- */
+.grid {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.game-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.game-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow), var(--glow);
+}
+
+.game-cover {
+  aspect-ratio: 16 / 10;
+  display: grid;
+  place-items: center;
+  font-size: 3rem;
+  background: linear-gradient(135deg, var(--c1, #6d3df0), var(--c2, #38bdf8));
+}
+
+.game-body { padding: 1.1rem 1.2rem 1.3rem; }
+.game-body h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+.game-body p { margin: 0 0 0.9rem; color: var(--text-muted); font-size: 0.92rem; }
+
+.tag {
+  display: inline-block;
+  padding: 0.15rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.18);
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.game-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.game-meta .year { color: var(--text-muted); font-size: 0.85rem; }
+
+/* ---------- Géneros ---------- */
+.genre-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.genre-item {
+  padding: 1.4rem 1rem;
+  text-align: center;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-weight: 600;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.genre-item:hover { border-color: var(--accent); transform: translateY(-3px); color: var(--text); }
+.genre-item .icon { display: block; font-size: 2rem; margin-bottom: 0.4rem; }
+
+/* ---------- Placeholder para páginas dos colegas ---------- */
+.placeholder-box {
+  text-align: center;
+  padding: 5rem 1rem;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+}
+
+/* ---------- Rodapé ---------- */
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: var(--bg-elevated);
+  padding: 2rem 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ---------- Responsivo (telemóvel) ---------- */
+@media (max-width: 720px) {
+  .menu-toggle { display: block; }
+
+  .main-nav {
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border);
+    display: none;
+    padding: 0.75rem 1rem 1rem;
+  }
+  .main-nav.open { display: block; }
+  .nav-list { flex-direction: column; }
+
+  .hero { padding: 3rem 0 2.5rem; }
+  .hero-stats { gap: 1.8rem; }
+  .section { padding: 2.8rem 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ---------- Carrossel infinito (destaques) ---------- */
+.carousel {
+  --per-view: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.carousel-viewport {
+  flex: 1;
+  overflow: hidden;
+  padding: 14px 0;      /* espaço para o hover dos cartões não ser cortado */
+  margin: -14px 0;
+  outline-offset: 2px;
+}
+
+.carousel-track {
+  display: flex;
+  gap: var(--gap);
+  will-change: transform;
+}
+
+.carousel-track .game-card {
+  flex: 0 0 calc((100% - (var(--per-view) - 1) * var(--gap)) / var(--per-view));
+  min-width: 0;
+}
+
+.carousel-btn {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.carousel-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: var(--glow);
+}
+
+.game-body .platforms { font-size: 0.82rem; margin-bottom: 0.7rem; }
+
+@media (max-width: 960px) { .carousel { --per-view: 2; } }
+
+@media (max-width: 560px) {
+  .carousel { --per-view: 1; gap: 0.4rem; }
+  .carousel-btn { width: 38px; height: 38px; font-size: 1.5rem; }
+}
+
+/* ---------- Carrossel maior + imagens ---------- */
+.container-wide { width: min(100% - 2rem, 1400px); }
+
+.carousel { gap: 1rem; }
+
+.carousel .game-cover {
+  aspect-ratio: 3 / 4;          /* formato poster */
+  font-size: 5.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.carousel .game-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel .game-body { padding: 1.3rem 1.4rem 1.5rem; }
+.carousel .game-body h3 { font-size: 1.2rem; }
+.carousel .game-body .platforms { font-size: 0.9rem; }
+.carousel .tag { font-size: 0.85rem; padding: 0.2rem 0.8rem; }
+
+.carousel-btn { width: 56px; height: 56px; font-size: 2.2rem; }
+
+@media (max-width: 560px) {
+  .carousel .game-cover { font-size: 4.5rem; }
+  .carousel-btn { width: 40px; height: 40px; font-size: 1.6rem; }
+}
+
+/* ---------- Capas horizontais + carrossel ainda maior ---------- */
+.container-wide { width: min(100% - 2rem, 1500px); }
+
+.carousel .game-cover { aspect-ratio: 3 / 2; }
+.carousel .game-cover img { transition: transform 0.4s ease; }
+.carousel .game-card:hover .game-cover img { transform: scale(1.06); }
+
+.carousel .game-body h3 { font-size: 1.3rem; }
+
+/* ---------- Fundo melhorado ---------- */
+body {
+  background:
+    radial-gradient(1100px 600px at 90% -10%, rgba(139, 92, 246, 0.28), transparent 60%),
+    radial-gradient(900px 600px at -10% 20%, rgba(56, 189, 248, 0.14), transparent 60%),
+    radial-gradient(900px 700px at 50% 115%, rgba(236, 72, 153, 0.16), transparent 60%),
+    linear-gradient(180deg, #0b0912 0%, #120d24 55%, #0b0912 100%);
+  background-attachment: fixed;
+}
+
+/* grelha subtil estilo "game UI" */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.07) 1px, transparent 1px);
+  background-size: 54px 54px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 15%, transparent 75%);
+  mask-image: radial-gradient(ellipse at 50% 0%, #000 15%, transparent 75%);
+}
+
+/* brilho que respira atrás do título */
+.hero { position: relative; }
+.hero::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  width: min(700px, 90vw);
+  height: 360px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(139, 92, 246, 0.35), transparent);
+  filter: blur(40px);
+  z-index: -1;
+  animation: respirar 6s ease-in-out infinite;
+}
+@keyframes respirar {
+  0%, 100% { opacity: 0.55; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.12); }
+}
+@media (prefers-reduced-motion: reduce) { .hero::before { animation: none; } }
+
+#destaques .section-title { margin-bottom: 1.5rem; }
+
+/* cor de base: garante fundo escuro em toda a página, em qualquer browser */
+html { background: #0b0912; }
+
+/* ---------- Ícones dos géneros (SVG, estilo sóbrio) ---------- */
+.genre-item .icon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 0.8rem;
+  border-radius: 14px;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  color: var(--accent-strong);
+  font-size: 0;
+  transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+}
+.genre-item .icon svg {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.genre-item:hover .icon {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: var(--glow);
+}
+.genre-item .icon { width: 68px; height: 68px; border-radius: 16px; }
+.genre-item .icon svg { width: 36px; height: 36px; }
