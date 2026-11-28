@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favoritos — GameDex</title>
+  <meta name="description" content="Os teus videojogos favoritos no GameDex: adiciona, consulta e remove jogos da tua lista.">
+  <meta name="theme-color" content="#09060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2.2 28 9.1v13.8L16 29.8 4 22.9V9.1Z' fill='%237c3aed' stroke='%237c3aed' stroke-width='2.4' stroke-linejoin='round'/%3E%3Cpath d='M22.2 12.4A7 7 0 1 0 22.6 17.2H16.6' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/utilizadores.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
+
+  <!-- ============ CABEÇALHO (RF 03) ============
+       Este bloco é igual em todas as páginas: copiar tal como está.
+       O link ativo e o botão Entrar/Sair são tratados por js/app.js. -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="GameDex — página inicial">
+        <svg class="brand-mark" viewBox="0 0 32 32" width="34" height="34" aria-hidden="true">
+          <defs>
+            <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#d946ef"/>
+            </linearGradient>
+          </defs>
+          <path d="M16 2.2 28 9.1v13.8L16 29.8 4 22.9V9.1Z" fill="url(#brandGrad)" stroke="url(#brandGrad)" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M22.2 12.4A7 7 0 1 0 22.6 17.2H16.6" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="22.4" cy="9.4" r="1.7" fill="#f5d0fe"/>
+        </svg>
+        <span class="brand-name">Game<span>Dex</span></span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
+        <span class="bars" aria-hidden="true"></span>
+      </button>
+
+      <nav class="nav" id="menu" aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="favoritos.html">Favoritos</a></li>
+          <li><a href="perfil.html">Perfil</a></li>
+          <li><a href="login.html" class="nav-cta" id="auth-link">Entrar</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo" tabindex="-1">
+    <section class="section" id="fav-root">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">A tua coleção</p>
+            <h1 class="section-title">Favoritos</h1>
+            <p class="section-sub">Guarda os jogos de que mais gostas. Os favoritos ficam associados à tua conta.</p>
+          </div>
+        </div>
+
+        <div class="u-card u-gate" id="fav-gate" hidden>
+          <h2 class="u-h2">Inicia sessão para usares os favoritos</h2>
+          <p class="u-lead">Os favoritos são guardados por utilizador, por isso precisas de uma conta com sessão iniciada.</p>
+          <div class="u-actions">
+            <a class="btn btn-primary" href="login.html">Entrar</a>
+            <a class="btn btn-ghost" href="registo.html">Criar conta</a>
+          </div>
+        </div>
+
+        <div id="fav-app" hidden>
+          <div class="u-msg" id="fav-status" role="status" aria-live="polite" hidden></div>
+
+          <h2 class="u-h2" id="fav-title" tabindex="-1">Os teus favoritos <span class="u-count" id="fav-count"></span></h2>
+          <div class="u-grid" id="fav-grid"></div>
+          <p class="notice" id="fav-empty" hidden>Ainda não tens jogos favoritos. Escolhe alguns na lista abaixo.</p>
+
+          <h2 class="u-h2">Adicionar jogos <span class="u-count" id="add-count"></span></h2>
+          <form class="u-search" id="add-search-form" role="search">
+            <label class="u-label" for="add-search">Procurar jogo pelo nome</label>
+            <input class="u-input" type="search" id="add-search" autocomplete="off" placeholder="Ex.: Elden Ring">
+          </form>
+          <div class="u-grid" id="add-grid"></div>
+          <p class="notice" id="add-empty" hidden>Não encontrámos jogos com esse nome.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ RODAPÉ ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="index.html" aria-label="GameDex — página inicial">
+          <svg class="brand-mark" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path d="M16 2.2 28 9.1v13.8L16 29.8 4 22.9V9.1Z" fill="url(#brandGrad)" stroke="url(#brandGrad)" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M22.2 12.4A7 7 0 1 0 22.6 17.2H16.6" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="22.4" cy="9.4" r="1.7" fill="#f5d0fe"/></svg>
+          <span class="brand-name">Game<span>Dex</span></span>
+        </a>
+        <p>Catálogo de videojogos feito em HTML, CSS e JavaScript.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Navegação do rodapé">
+        <a href="catalogo.html">Catálogo</a>
+        <a href="favoritos.html">Favoritos</a>
+        <a href="perfil.html">Perfil</a>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <p>© <span id="year">2026</span> GameDex · Projeto académico</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/utilizadores.js"></script>
+</body>
+</html>

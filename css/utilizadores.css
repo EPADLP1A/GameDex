@@ -1,0 +1,106 @@
+/* =========================================================
+   GameDex — css/utilizadores.css
+   Estilos das páginas de utilizador: registo, login, perfil
+   e favoritos (RF 10, RF 11, RF 12, RF 13, RNF 07).
+
+   Carregar DEPOIS de css/style.css: usa as variáveis e as
+   classes desse ficheiro (--violet, --surface, .btn, .chip…).
+   Todas as classes novas começam por "u-" para não chocarem
+   com as dos colegas.
+   ========================================================= */
+
+/* ---------- Cartão central (registo, login, perfil) ---------- */
+.u-wrap { max-width: 540px; margin-inline: auto; }
+.u-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: clamp(1.4rem, 4vw, 2.2rem);
+  box-shadow: 0 24px 60px -30px rgba(139, 92, 246, 0.45);
+}
+.u-card h1 { margin-top: 0.7rem; font: 700 clamp(1.7rem, 4vw, 2.3rem)/1.1 var(--font-display); letter-spacing: -0.025em; }
+.u-lead { margin-top: 0.6rem; color: var(--muted); }
+
+/* ---------- Formulários ---------- */
+.u-form { display: grid; gap: 1.1rem; margin-top: 1.5rem; }
+.u-field { display: grid; gap: 0.4rem; }
+.u-label { font-weight: 600; font-size: 0.92rem; }
+.u-input {
+  width: 100%; padding: 0.8rem 1rem; border-radius: var(--radius-sm);
+  background: var(--bg-alt); border: 1px solid var(--border); color: var(--text);
+  font: inherit; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.u-input::placeholder { color: #7d7499; }
+.u-input:hover { border-color: var(--border-strong); }
+.u-input:focus-visible { outline: none; border-color: var(--violet); box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.35); }
+.u-field.has-error .u-input { border-color: #f87171; }
+.u-hint { color: var(--muted); font-size: 0.82rem; }
+.u-error { color: #fca5a5; font-size: 0.86rem; }
+.u-error:empty { display: none; }
+
+.u-pass { position: relative; }
+.u-pass .u-input { padding-right: 5.6rem; }
+.u-toggle {
+  position: absolute; right: 0.4rem; top: 50%; transform: translateY(-50%);
+  padding: 0.4rem 0.8rem; border-radius: 999px; border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06); color: var(--violet-soft);
+  font-size: 0.8rem; font-weight: 600; cursor: pointer;
+}
+.u-toggle:hover { background: rgba(255, 255, 255, 0.12); }
+
+.u-check { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.9rem; color: var(--muted); cursor: pointer; }
+.u-check input { flex: none; width: 1.15rem; height: 1.15rem; margin-top: 0.15rem; accent-color: var(--violet-deep); }
+
+.u-card .u-submit { width: 100%; margin-top: 0.3rem; }
+.btn[disabled] { opacity: 0.6; cursor: default; transform: none; }
+
+/* ---------- Avisos e mensagens ---------- */
+.u-warning {
+  margin-top: 1.25rem; padding: 0.9rem 1rem; border-radius: var(--radius-sm);
+  border: 1px solid rgba(251, 191, 36, 0.4); background: rgba(251, 191, 36, 0.08);
+  color: #fde68a; font-size: 0.88rem;
+}
+.u-warning strong { color: #fef3c7; }
+.u-msg { padding: 0.85rem 1rem; border-radius: var(--radius-sm); border: 1px solid; font-size: 0.95rem; }
+.u-msg[hidden] { display: none; }
+.u-msg.is-error { background: rgba(248, 113, 113, 0.1); border-color: rgba(248, 113, 113, 0.45); color: #fecaca; }
+.u-msg.is-ok { background: rgba(74, 222, 128, 0.1); border-color: rgba(74, 222, 128, 0.4); color: #bbf7d0; }
+.u-msg a, .u-alt a { color: var(--violet-soft); text-decoration: underline; }
+.u-card > .u-msg { margin-top: 1.25rem; }
+.u-alt { margin-top: 1.4rem; text-align: center; color: var(--muted); font-size: 0.95rem; }
+
+/* ---------- Perfil ---------- */
+.u-profile-head { display: flex; align-items: center; gap: 1.2rem; }
+.u-profile-head h1 { margin-top: 0; }
+.u-avatar {
+  flex: none; width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--grad-btn); color: #fff; font: 700 1.6rem/1 var(--font-display);
+  box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.8);
+}
+.u-info { margin-top: 1.5rem; }
+.u-info > div { display: flex; justify-content: space-between; gap: 1rem; padding: 0.85rem 0; border-bottom: 1px solid var(--border); }
+.u-info dt { color: var(--muted); }
+.u-info dd { font-weight: 600; text-align: right; overflow-wrap: anywhere; }
+.u-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+.u-card .u-actions .btn { width: auto; flex: 1 1 180px; }
+
+/* ---------- Favoritos ---------- */
+.u-h2 { margin: 2.5rem 0 1.1rem; font: 700 clamp(1.4rem, 3vw, 1.9rem)/1.15 var(--font-display); letter-spacing: -0.02em; }
+.u-h2:first-of-type { margin-top: 0; }
+.u-h2:focus { outline: none; }
+.u-count { color: var(--violet-soft); font-weight: 600; }
+.u-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; }
+.u-game[hidden] { display: none; }
+.u-game:hover, .u-game:focus-within { transform: none; }
+.u-btn-sm { margin-top: auto; align-self: flex-start; padding: 0.65rem 1.2rem; font-size: 0.9rem; }
+.u-game .game-meta { margin-bottom: 0.5rem; }
+.u-search { max-width: 460px; margin-bottom: 1.4rem; }
+.u-gate { max-width: 640px; }
+.u-gate .u-actions { margin-top: 1rem; }
+#fav-status { margin-bottom: 1.5rem; }
+.u-note { margin-top: 0.5rem; }
+
+@media (max-width: 640px) {
+  .u-profile-head { flex-direction: column; align-items: flex-start; }
+  .u-info > div { flex-direction: column; gap: 0.2rem; }
+  .u-info dd { text-align: left; }
+  .u-grid { grid-template-columns: 1fr; }
+}
